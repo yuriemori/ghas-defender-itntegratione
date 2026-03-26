@@ -6,9 +6,11 @@
 param location string
 
 @description('環境名')
+@minLength(3)
 param environment string
 
 @description('ワークロード名')
+@minLength(1)
 param workloadName string
 
 @description('リソースタグ')
