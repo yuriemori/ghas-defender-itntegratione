@@ -14,8 +14,8 @@ param environment string = 'dev'
 @description('ワークロード名')
 param workloadName string = 'ghasdefender'
 
-@description('コンテナイメージ (初回はプレースホルダーを使用)')
-param containerImage string = 'mcr.microsoft.com/k8se/quickstart:latest'
+@description('コンテナイメージ名 (リポジトリ:タグ)')
+param imageName string = 'ghas-defender-app:latest'
 
 // Azure CAF 命名規則に準拠
 var resourceGroupName = 'rg-${workloadName}-${environment}-${location}'
@@ -61,7 +61,7 @@ module containerApp 'modules/containerapp.bicep' = {
     tags: tags
     acrLoginServer: acr.outputs.acrLoginServer
     acrName: acr.outputs.acrName
-    containerImage: containerImage
+    imageName: imageName
   }
 }
 

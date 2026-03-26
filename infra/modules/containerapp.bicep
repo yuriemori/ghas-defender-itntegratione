@@ -20,8 +20,11 @@ param acrLoginServer string
 @description('ACR リソース名')
 param acrName string
 
-@description('コンテナイメージ (初回はプレースホルダーを使用)')
-param containerImage string = 'mcr.microsoft.com/k8se/quickstart:latest'
+@description('コンテナイメージ名 (リポジトリ:タグ)')
+param imageName string = 'ghas-defender-app:latest'
+
+// ACR のフルイメージ参照を構築
+var containerImage = '${acrLoginServer}/${imageName}'
 
 // Azure CAF 命名規則
 var logAnalyticsName = 'log-${workloadName}-${environment}'
